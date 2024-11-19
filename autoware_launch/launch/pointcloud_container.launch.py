@@ -44,7 +44,7 @@ def launch_setup(context, *args, **kwargs):
 
     return [
         GroupAction(actions=[
-            SetEnvironmentVariable(name="LD_PRELOAD", value="libpreloaded.so"),
+            SetEnvironmentVariable(name="LD_PRELOAD", value="libagnocast_heaphook.so"),
             SetEnvironmentVariable(name="MEMPOOL_SIZE", value="10737418240"),  # 10.24GB
             pointcloud_container
         ])
