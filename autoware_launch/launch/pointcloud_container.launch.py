@@ -12,6 +12,8 @@
 # See the License for the specific language governing permissions and
 # limitations under the License.
 
+import os
+
 from launch import LaunchDescription
 from launch.actions import DeclareLaunchArgument
 from launch.actions import GroupAction
@@ -44,7 +46,8 @@ def launch_setup(context, *args, **kwargs):
 
     return [
         GroupAction(actions=[
-            SetEnvironmentVariable(name="LD_PRELOAD", value="libagnocast_heaphook.so"),
+            SetEnvironmentVariable(
+                name="LD_PRELOAD", value=f"libagnocast_heaphook.so:{os.getenv('LD_PRELOAD', '')}"),
             SetEnvironmentVariable(name="MEMPOOL_SIZE", value="10737418240"),  # 10.24GB
             pointcloud_container
         ])
